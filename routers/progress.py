@@ -30,8 +30,8 @@ async def mark_complete(request: Request):
     if not section_id:
         return err(400, "section_id required.")
 
-    await mark_section_complete(user_id, section_id)
-    return JSONResponse({"ok": True, "section_id": section_id})
+    completed_at = await mark_section_complete(user_id, section_id)
+    return JSONResponse({"ok": True, "section_id": section_id, "completed_at": completed_at})
 
 
 async def unmark_complete(request: Request):
